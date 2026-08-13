@@ -10,7 +10,7 @@ import { useRain } from "./use-rain";
  * escapes to a fixed full-bleed layer via its own `fixed inset-0` styles.
  */
 export function RainLayer() {
-  const { active, intensity, toggle, changeIntensity } = useRain();
+  const { active, intensity, thunderFlash, toggle, changeIntensity } = useRain();
 
   return (
     <>
@@ -24,6 +24,16 @@ export function RainLayer() {
       >
         <div className="h-full w-full bg-gradient-to-b from-black/20 via-transparent to-black/80" />
       </div>
+
+      {/* Thunder flash — brief blue-white burst across the whole screen */}
+      <div
+        className="pointer-events-none fixed inset-0 z-[4]"
+        style={{
+          background: "rgba(210, 230, 255, 0.88)",
+          opacity: thunderFlash ? 1 : 0,
+          transition: thunderFlash ? "none" : "opacity 0.45s ease-out",
+        }}
+      />
 
       <RainCanvas active={active} intensity={intensity} />
       <RainToggle
