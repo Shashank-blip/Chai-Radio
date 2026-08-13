@@ -2,7 +2,7 @@
 
 A nostalgic web radio for old Hindi film songs. Vintage vinyl aesthetic, ambient rain, time-aware atmosphere, and a chai brewing timer — built to feel like a late night listening session.
 
-Live at **[chaichuska.vercel.app](https://chai-radio-ten.vercel.app/)**
+Live at **[chaichuska](https://chai-radio-ten.vercel.app/)**
 
 ---
 
