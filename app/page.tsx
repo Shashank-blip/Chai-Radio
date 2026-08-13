@@ -3,6 +3,7 @@ import { Player } from "./player/Player";
 import { RainLayer } from "./atmosphere/RainLayer";
 import { ChaiTimer } from "./chai-timer/ChaiTimer";
 import { TimeOverlay, TimePeriodLabel } from "./atmosphere/TimeLayer";
+import { ListenerCount } from "./listeners/ListenerCount";
 
 export default function Page() {
   return (
@@ -31,6 +32,7 @@ export default function Page() {
             Chai Chuska Radio
           </p>
           <TimePeriodLabel />
+          <ListenerCount />
         </div>
         <div className="relative z-[5] justify-self-end flex flex-col items-end gap-2 rounded-2xl bg-black/30 px-2.5 py-2">
           <RainLayer />
