@@ -1,5 +1,6 @@
 import { formatTime } from "./format";
 import { SeekBar } from "./SeekBar";
+import { ShareButton } from "./ShareButton";
 import { TransportControls } from "./TransportControls";
 import type { UsePlayerResult } from "./use-player";
 import { Vinyl } from "./Vinyl";
@@ -53,7 +54,7 @@ export function MobilePlayer({ player }: Props) {
           size="mobile"
         />
         {/* Balance spacer */}
-        <span className="w-[60px]" aria-hidden />
+        <ShareButton track={currentTrack} />
       </div>
     </div>
   );

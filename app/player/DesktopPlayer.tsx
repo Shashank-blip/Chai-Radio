@@ -1,5 +1,6 @@
 import { formatTime } from "./format";
 import { SeekBar } from "./SeekBar";
+import { ShareButton } from "./ShareButton";
 import { TransportControls } from "./TransportControls";
 import type { UsePlayerResult } from "./use-player";
 import { Vinyl } from "./Vinyl";
@@ -50,13 +51,16 @@ export function DesktopPlayer({ player }: Props) {
           <span className="font-mono text-[10px] tabular-nums text-[#e8a33d]/50">
             {formatTime(elapsed)} / {formatTime(duration)}
           </span>
-          <TransportControls
-            status={status}
-            onPrev={controls.prev}
-            onPlayPause={controls.playPause}
-            onNext={controls.next}
-            size="desktop"
-          />
+          <div className="flex items-center gap-2">
+            <TransportControls
+              status={status}
+              onPrev={controls.prev}
+              onPlayPause={controls.playPause}
+              onNext={controls.next}
+              size="desktop"
+            />
+            <ShareButton track={currentTrack} />
+          </div>
         </div>
       </div>
     </div>
