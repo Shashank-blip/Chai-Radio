@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="disc" cx="42%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1c140a"/>
+      <stop offset="100%" stop-color="#080503"/>
+    </radialGradient>
+    <radialGradient id="lbl" cx="38%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.28)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <clipPath id="lc">
+      <circle cx="32" cy="32" r="13"/>
+    </clipPath>
+  </defs>
+
+  <!-- Vinyl disc -->
+  <circle cx="32" cy="32" r="32" fill="url(#disc)"/>
+
+  <!-- Groove rings -->
+  <circle cx="32" cy="32" r="30"   fill="none" stroke="#1f1f1f" stroke-width="1.4"/>
+  <circle cx="32" cy="32" r="27.5" fill="none" stroke="#141414" stroke-width="0.7"/>
+  <circle cx="32" cy="32" r="25"   fill="none" stroke="#1f1f1f" stroke-width="1.4"/>
+  <circle cx="32" cy="32" r="22.5" fill="none" stroke="#141414" stroke-width="0.7"/>
+  <circle cx="32" cy="32" r="20"   fill="none" stroke="#1f1f1f" stroke-width="1.4"/>
+  <circle cx="32" cy="32" r="17.5" fill="none" stroke="#141414" stroke-width="0.7"/>
+
+  <!-- Sheen over grooves -->
+  <circle cx="32" cy="32" r="30" fill="url(#lbl)" opacity="0.35"/>
+
+  <!-- Center label -->
+  <circle cx="32" cy="32" r="13" fill="#b87220"/>
+  <circle cx="32" cy="32" r="13" fill="#e8a33d" opacity="0.88"/>
+
+  <!-- Label artwork (clipped to circle) -->
+  <g clip-path="url(#lc)">
+    <!-- Steam wisps -->
+    <path d="M27.5 25 Q26.5 22.5 27.5 20.5" fill="none" stroke="#1a0c04" stroke-width="1.15" stroke-linecap="round"/>
+    <path d="M32   24.5 Q31 22 32 20"       fill="none" stroke="#1a0c04" stroke-width="1.15" stroke-linecap="round"/>
+    <path d="M36.5 25 Q35.5 22.5 36.5 20.5" fill="none" stroke="#1a0c04" stroke-width="1.15" stroke-linecap="round"/>
+
+    <!-- Cup body (trapezoid: wide top, narrower base) -->
+    <path d="M26 26.5 L27.5 36.5 L36.5 36.5 L38 26.5 Z" fill="#1a0c04" opacity="0.88"/>
+
+    <!-- Handle (right side arc) -->
+    <path d="M38 28.5 Q42 28.5 42 31.5 Q42 34.5 38 34.5"
+          fill="none" stroke="#1a0c04" stroke-width="1.9" stroke-linecap="round"/>
+
+    <!-- Saucer line -->
+    <line x1="24.5" y1="37.5" x2="39.5" y2="37.5"
+          stroke="#1a0c04" stroke-width="1.1" stroke-linecap="round" opacity="0.75"/>
+  </g>
+
+  <!-- Label sheen -->
+  <circle cx="32" cy="32" r="13" fill="url(#lbl)"/>
+
+  <!-- Spindle hole -->
+  <circle cx="32" cy="32" r="2.6" fill="#07050300"/>
+  <circle cx="32" cy="32" r="2.6" fill="#060402" opacity="0.95"/>
+
+  <!-- Outer amber edge ring -->
+  <circle cx="32" cy="32" r="31.5" fill="none" stroke="rgba(232,163,61,0.32)" stroke-width="0.8"/>
+</svg>

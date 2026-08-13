@@ -23,29 +23,69 @@ function makePinkNoise(ctx: AudioContext): AudioBuffer {
 }
 
 function playThunderRumble(ctx: AudioContext) {
-  const duration = 2.5 + Math.random() * 2;
-  const buf = ctx.createBuffer(1, Math.ceil(duration * ctx.sampleRate), ctx.sampleRate);
-  const data = buf.getChannelData(0);
-  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-
-  const src = ctx.createBufferSource();
-  src.buffer = buf;
-
-  // Very low cutoff for that deep booming rumble
-  const lp = ctx.createBiquadFilter();
-  lp.type = "lowpass";
-  lp.frequency.value = 70 + Math.random() * 60;
-
-  const gain = ctx.createGain();
   const now = ctx.currentTime;
-  gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.55 + Math.random() * 0.45, now + 0.07);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
-  src.connect(lp);
-  lp.connect(gain);
-  gain.connect(ctx.destination);
-  src.start();
+  // Compressor glues crack + rumble and boosts perceived loudness
+  const comp = ctx.createDynamicsCompressor();
+  comp.threshold.value = -10;
+  comp.knee.value = 3;
+  comp.ratio.value = 6;
+  comp.attack.value = 0.001;
+  comp.release.value = 0.15;
+  comp.connect(ctx.destination);
+
+  // ── Initial boom (low-mid thud, no high freq = no gun-crack) ─────────────
+  const boomDur = 0.9;
+  const boomBuf = ctx.createBuffer(2, Math.ceil(boomDur * ctx.sampleRate), ctx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = boomBuf.getChannelData(ch);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  }
+  const boomSrc = ctx.createBufferSource();
+  boomSrc.buffer = boomBuf;
+
+  const boomHp = ctx.createBiquadFilter();
+  boomHp.type = "highpass";
+  boomHp.frequency.value = 55;          // keeps the low body
+
+  const boomLp = ctx.createBiquadFilter();
+  boomLp.type = "lowpass";
+  boomLp.frequency.value = 320;         // cuts everything gun-shot-like above this
+
+  const boomGain = ctx.createGain();
+  boomGain.gain.setValueAtTime(0, now);
+  boomGain.gain.linearRampToValueAtTime(3.5, now + 0.018); // soft attack (~18ms) → thud not snap
+  boomGain.gain.exponentialRampToValueAtTime(0.001, now + boomDur);
+
+  boomSrc.connect(boomHp);
+  boomHp.connect(boomLp);
+  boomLp.connect(boomGain);
+  boomGain.connect(comp);
+  boomSrc.start(now);
+
+  // ── Rolling rumble underneath ──────────────────────────────────────────────
+  const rumbleDur = 3.5 + Math.random() * 2;
+  const rumbleBuf = ctx.createBuffer(2, Math.ceil(rumbleDur * ctx.sampleRate), ctx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = rumbleBuf.getChannelData(ch);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  }
+  const rumbleSrc = ctx.createBufferSource();
+  rumbleSrc.buffer = rumbleBuf;
+
+  const rumbleLp = ctx.createBiquadFilter();
+  rumbleLp.type = "lowpass";
+  rumbleLp.frequency.value = 220 + Math.random() * 100; // 220-320Hz — audible on headphones, feels like sky
+
+  const rumbleGain = ctx.createGain();
+  rumbleGain.gain.setValueAtTime(0, now);
+  rumbleGain.gain.linearRampToValueAtTime(2.2, now + 0.1);
+  rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + rumbleDur);
+
+  rumbleSrc.connect(rumbleLp);
+  rumbleLp.connect(rumbleGain);
+  rumbleGain.connect(comp);
+  rumbleSrc.start(now);
 }
 
 export function useRain() {
@@ -60,17 +100,14 @@ export function useRain() {
   const activeRef = useRef(false);
 
   function triggerThunder() {
-    // Double-flash like real lightning
+    // Subtle double-flash — bright enough to notice, not blinding
     setThunderFlash(true);
-    setTimeout(() => setThunderFlash(false), 70);
-    setTimeout(() => setThunderFlash(true), 120);
-    setTimeout(() => setThunderFlash(false), 220);
+    setTimeout(() => setThunderFlash(false), 60);
+    setTimeout(() => setThunderFlash(true), 100);
+    setTimeout(() => setThunderFlash(false), 180);
 
-    // Rumble arrives after a random delay (light travels faster than sound)
-    const rumbleDelay = 200 + Math.random() * 1400;
-    setTimeout(() => {
-      if (ctxRef.current) playThunderRumble(ctxRef.current);
-    }, rumbleDelay);
+    // Sound fires with the flash — crack is instant, rumble builds underneath
+    if (ctxRef.current) playThunderRumble(ctxRef.current);
   }
 
   function scheduleThunder(intensityVal: number) {

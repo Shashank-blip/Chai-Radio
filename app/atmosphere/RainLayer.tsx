@@ -29,9 +29,9 @@ export function RainLayer() {
       <div
         className="pointer-events-none fixed inset-0 z-[4]"
         style={{
-          background: "rgba(210, 230, 255, 0.88)",
-          opacity: thunderFlash ? 1 : 0,
-          transition: thunderFlash ? "none" : "opacity 0.45s ease-out",
+          background: "rgba(210, 230, 255, 1)",
+          opacity: thunderFlash ? 0.28 : 0,
+          transition: thunderFlash ? "none" : "opacity 0.5s ease-out",
         }}
       />
 
