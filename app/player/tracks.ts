@@ -227,7 +227,7 @@ export const playlists: Playlist[] = [
         year: 2008,
         duration: 300,
         audioUrl:
-          "https://archive.org/download/race-2008-movie-songs-hindiganadownload.com/Race/03%20Pehli%20Nazar%20Mein%20-%20hindiganadownload.com.mp3",
+          "https://archive.org/download/songs.pkatifyourstruly08rangjolagyo/%5BSongs.PK%5D%20Atif%20Yours%20Truly%20-%2013%20-%20Pehli%20Nazar%20Mein.mp3",
         labelColor: "#1e3020",
       },
       {
@@ -277,7 +277,7 @@ export const playlists: Playlist[] = [
         year: 1971,
         duration: 281,
         audioUrl:
-          "https://archive.org/download/revival-vol-9-yeh-shaam-mastani-01-10/Revival%20Vol%209-Yeh_Shaam%20Mastani-01%20(10).mp3",
+          "https://archive.org/download/RajeshKhannaHitSongsCollectionTop25BollywoodOldSuperhitsEvergreenHindiSongsJukebox_201709/KumarKishore/Ye%20Shaam%20Mastani%20-%20Rajesh%20Khanna%20%20Asha%20Parekh%20-%20Kati%20Patang.mp3",
         labelColor: "#3a2a10",
       },
       {
