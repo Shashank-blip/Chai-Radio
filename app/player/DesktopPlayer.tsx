@@ -3,7 +3,7 @@ import { SeekBar } from "./SeekBar";
 import { ShareButton } from "./ShareButton";
 import { TransportControls } from "./TransportControls";
 import type { UsePlayerResult } from "./use-player";
-import { Vinyl } from "./Vinyl";
+import { VinylWithTrivia } from "./VinylWithTrivia";
 
 type Props = { player: UsePlayerResult };
 
@@ -21,9 +21,11 @@ export function DesktopPlayer({ player }: Props) {
       }}
     >
       {/* Vinyl */}
-      <div className="h-28 w-28 shrink-0">
-        <Vinyl spinning={status === "playing"} track={currentTrack} />
-      </div>
+      <VinylWithTrivia
+        spinning={status === "playing"}
+        track={currentTrack}
+        size="desktop"
+      />
 
       {/* Info + controls */}
       <div className="min-w-0 flex-1">

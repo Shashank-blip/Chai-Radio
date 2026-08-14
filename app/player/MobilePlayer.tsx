@@ -3,7 +3,7 @@ import { SeekBar } from "./SeekBar";
 import { ShareButton } from "./ShareButton";
 import { TransportControls } from "./TransportControls";
 import type { UsePlayerResult } from "./use-player";
-import { Vinyl } from "./Vinyl";
+import { VinylWithTrivia } from "./VinylWithTrivia";
 
 type Props = { player: UsePlayerResult };
 
@@ -22,9 +22,11 @@ export function MobilePlayer({ player }: Props) {
     >
       {/* Top row: vinyl + info */}
       <div className="flex items-center gap-4">
-        <div className="h-20 w-20 shrink-0">
-          <Vinyl spinning={status === "playing"} track={currentTrack} />
-        </div>
+        <VinylWithTrivia
+          spinning={status === "playing"}
+          track={currentTrack}
+          size="mobile"
+        />
         <div className="min-w-0 flex-1">
           <p className="truncate text-[15px] font-semibold leading-tight text-[#f0ddb0]">
             {currentTrack.title}
