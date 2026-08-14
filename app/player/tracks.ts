@@ -172,6 +172,100 @@ export const playlists: Playlist[] = [
     ],
   },
   {
+    id: "new-age-romance",
+    name: "New Age Romance",
+    tracks: [
+      {
+        id: "tujhe-dekha-to",
+        title: "Tujhe Dekha To",
+        artist: "Lata Mangeshkar, Kumar Sanu",
+        film: "Dilwale Dulhania Le Jayenge",
+        year: 1995,
+        duration: 310,
+        audioUrl:
+          "https://archive.org/download/DilwaleDulhaniaLeJayenge-1995/Dilwale%20Dulhania%20Le%20Jayenge%20-%201995/06%20-%20TUJHE%20DEKHA%20TO.mp3",
+        labelColor: "#1a2a3e",
+      },
+      {
+        id: "kal-ho-na-ho",
+        title: "Kal Ho Naa Ho",
+        artist: "Sonu Nigam",
+        film: "Kal Ho Naa Ho",
+        year: 2003,
+        duration: 295,
+        audioUrl:
+          "https://archive.org/download/KalHoNaaHo-2003/Kal%20ho%20naa%20ho%20-%202003/04%20-%20Kal_ho_na_ho.mp3",
+        labelColor: "#2a1e40",
+      },
+      {
+        id: "kuch-to-hua-hai",
+        title: "Kuch To Hua Hai",
+        artist: "Shaan, Shreya Ghoshal",
+        film: "Kal Ho Naa Ho",
+        year: 2003,
+        duration: 270,
+        audioUrl:
+          "https://archive.org/download/KalHoNaaHo-2003/Kal%20ho%20naa%20ho%20-%202003/05%20-%20Kuch_to_hua_hai.mp3",
+        labelColor: "#0e2a20",
+      },
+      {
+        id: "jaadu-hai-nasha",
+        title: "Jaadu Hai Nasha Hai",
+        artist: "Shreya Ghoshal, Shaan",
+        film: "Jism",
+        year: 2003,
+        duration: 285,
+        audioUrl:
+          "https://archive.org/download/ShreyaGhoshal2003CompleteHindiSongsCollection/021%20Jaadu%20Hai%20Nasha%20Hai%20%28Duet%29.mp3",
+        labelColor: "#3e1a20",
+      },
+      {
+        id: "pehli-nazar-mein",
+        title: "Pehli Nazar Mein",
+        artist: "Atif Aslam",
+        film: "Race",
+        year: 2008,
+        duration: 300,
+        audioUrl:
+          "https://archive.org/download/race-2008-movie-songs-hindiganadownload.com/Race/03%20Pehli%20Nazar%20Mein%20-%20hindiganadownload.com.mp3",
+        labelColor: "#1e3020",
+      },
+      {
+        id: "phir-mohabbat",
+        title: "Phir Mohabbat",
+        artist: "Mohit Chauhan",
+        film: "Murder 2",
+        year: 2011,
+        duration: 320,
+        audioUrl:
+          "https://archive.org/download/phirmohabbatmurder2320kbps/Phir%20Mohabbat%20-%20Murder%202%20320Kbps.mp3",
+        labelColor: "#2e2040",
+      },
+      {
+        id: "raabta",
+        title: "Raabta",
+        artist: "Shreya Ghoshal",
+        film: "Agent Vinod",
+        year: 2012,
+        duration: 295,
+        audioUrl:
+          "https://archive.org/download/RaabtaKehteHainKhudaNebestwap.in/Raabta_%28Kehte_Hain_Khuda_Ne%29_%28bestwap.in%29.mp3",
+        labelColor: "#401e10",
+      },
+      {
+        id: "channa-mereya",
+        title: "Channa Mereya",
+        artist: "Arijit Singh",
+        film: "Ae Dil Hai Mushkil",
+        year: 2016,
+        duration: 280,
+        audioUrl:
+          "https://archive.org/download/AeDilHaiMushkil-2016/Ae%20Dil%20Hai%20Mushkil%20-%202016/03%20-%20Channa%20Mereya.mp3",
+        labelColor: "#0e1e30",
+      },
+    ],
+  },
+  {
     id: "late-night-chai",
     name: "Late Night Chai",
     tracks: [
