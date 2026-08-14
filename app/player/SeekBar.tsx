@@ -2,11 +2,14 @@
 
 import { useRef, useState, type PointerEvent } from "react";
 import { clamp } from "./format";
+import type { PlaybackStatus } from "./use-player";
+import { Waveform } from "./Waveform";
 
 type SeekBarProps = {
   elapsed: number;
   duration: number;
   onSeek: (seconds: number) => void;
+  status: PlaybackStatus;
   className?: string;
 };
 
@@ -14,7 +17,7 @@ const TOTAL_TICKS = 48;
 const MAJOR_EVERY = 6; // every 6th tick is tall
 const MED_EVERY = 3;   // every 3rd is medium
 
-export function SeekBar({ elapsed, duration, onSeek, className }: SeekBarProps) {
+export function SeekBar({ elapsed, duration, onSeek, status, className }: SeekBarProps) {
   const railRef = useRef<HTMLDivElement>(null);
   const [dragValue, setDragValue] = useState<number | null>(null);
 
@@ -73,6 +76,9 @@ export function SeekBar({ elapsed, duration, onSeek, className }: SeekBarProps) 
           border: "1px solid rgba(232,163,61,0.12)",
         }}
       >
+        {/* Waveform EQ bars — sits below tick marks */}
+        <Waveform status={status} />
+
         {/* Tick marks */}
         <div className="absolute inset-0 flex items-end justify-around pb-1 px-0.5 pointer-events-none">
           {Array.from({ length: TOTAL_TICKS }).map((_, i) => {

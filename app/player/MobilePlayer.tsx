@@ -16,8 +16,8 @@ export function MobilePlayer({ player }: Props) {
       style={{
         background: "linear-gradient(160deg, #211608 0%, #130d05 100%)",
         border: "1px solid rgba(232,163,61,0.14)",
-        boxShadow:
-          "0 0 0 1px rgba(0,0,0,0.4), 0 24px 64px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05)",
+        boxShadow: `0 0 0 1px rgba(0,0,0,0.4), 0 24px 64px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 22px 4px ${currentTrack.labelColor}44, 0 0 60px 8px ${currentTrack.labelColor}18`,
+        transition: "box-shadow 2s ease",
       }}
     >
       {/* Top row: vinyl + info */}
@@ -27,7 +27,11 @@ export function MobilePlayer({ player }: Props) {
           track={currentTrack}
           size="mobile"
         />
-        <div className="min-w-0 flex-1">
+        <div
+          key={currentTrack.id}
+          className="min-w-0 flex-1"
+          style={{ animation: "track-slide-in 0.35s ease" }}
+        >
           <p className="truncate text-[15px] font-semibold leading-tight text-[#f0ddb0]">
             {currentTrack.title}
           </p>
@@ -41,7 +45,12 @@ export function MobilePlayer({ player }: Props) {
       </div>
 
       {/* Tuner seek bar */}
-      <SeekBar elapsed={elapsed} duration={duration} onSeek={controls.seek} />
+      <SeekBar
+        elapsed={elapsed}
+        duration={duration}
+        onSeek={controls.seek}
+        status={status}
+      />
 
       {/* Controls row */}
       <div className="flex items-center justify-between">
@@ -55,9 +64,15 @@ export function MobilePlayer({ player }: Props) {
           onNext={controls.next}
           size="mobile"
         />
-        {/* Balance spacer */}
         <ShareButton track={currentTrack} />
       </div>
+
+      <style>{`
+        @keyframes track-slide-in {
+          from { opacity: 0; transform: translateX(10px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
     </div>
   );
 }
